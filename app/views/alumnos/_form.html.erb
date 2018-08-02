@@ -1,24 +1,67 @@
 
 <%= simple_form_for(@alumno) do |f| %>
   <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
+<div class="container">
   <div class="form-inputs">
-    <%= f.input :tipo_identificacion %>
-    <%= f.input :identificacion %>
-    <%= f.input :nombre %>
-    <%= f.input :apellido %>
-    <%= f.input :genero %>
-    <%= f.input :email %>
-    <%= f.input :fecha_n %>
-    <%= f.input :tipo_sangre %>
-    <%= f.input :direccion %>
-    <%= f.input :barrio %>
-    <%= f.input :telefono %>
-    <%= f.input :celular %>
+    <div class="row">
+      <div class="col">
+        <%= f.input :tipo_identificacion, collection: ["T.I. - Tarjeta de Identidad","C.C. - Cédula de Ciudadania","C.I. - Cédula de Identidad", "T.P. - Tarjeta Pasaporte", "R.C. - Registro Civil","C.E. - Cédula Extranjería" ], include_blank: false %>
+      </div>
+      <div class="col">
+        <%= f.input :identificacion %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <%= f.input :nombre %>
+      </div>
+      <div class="col">
+        <%= f.input :apellido %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <%= f.input :fecha_n, as:  :date, label: "Fecha de Nacimiento" %>
+      </div>
+      <div class="col">
+        <%= f.input :tipo_sangre, label: "Tipo de Sangre", collection: ["O-","O+","A-","A+","B-","B+","AB-","AB+"], include_blank: false %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <%= f.input :barrio %>
+      </div>
+      <div class="col">
+        <%= f.input :direccion %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <%= f.input :email %>
+      </div>
+      <div class="col">
+        <%= f.input :telefono %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <%= f.input :celular %>
+      </div>
+      <div class="col">
+        <%= f.input :genero, as: :radio_buttons, collection: ["Masculino","Femenino"] %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <%= f.association :curso, include_blank: "Seleccion un curso" %>
+      </div>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+</div>
+<div class="form-actions">
+  <button type="submit" class="btn btn-primary btn-lg btn-block">
+    <%= fa_icon "save", text:"Guardar" %>
+  </button>
+</div>
 <% end %>

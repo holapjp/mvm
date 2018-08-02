@@ -5,7 +5,7 @@
   <div class="form-inputs">
     <div class="row">
       <div class="co-12 col-md-6">
-          <%= f.input :tipo_identificacion, collection: ["T.I. - Tarjeta de Identidad", "C.C. - Cédula de Ciudadania","C.I. - Cédula de Identidad", "T.P. - Tarjeta Pasaporte", "R.C. - Registro Civil","C.E - Cédula Extranjería"], include_blank: false  %>  
+          <%= f.input :tipo_identificacion, collection: ["T.I. - Tarjeta de Identidad", "C.C. - Cédula de Ciudadania","C.I. - Cédula de Identidad", "T.P. - Tarjeta Pasaporte", "R.C. - Registro Civil","C.E. - Cédula Extranjería"], include_blank: false  %>  
       </div>
       <div class="col-12 col-md-6">
           <%= f.input :identificacion %>
@@ -22,7 +22,7 @@
     <div class="row">
       <div class="col-12 col-md-6">
         <div class="form-group">
-          <label for="fecha_n">Fecha Nacimineto</label>
+          <label for="fecha_n">Fecha de Nacimineto</label>
           <%= text_field_tag "acudiente[fecha_n]", nil ,class:"form-control" %>
         </div>
       </div>

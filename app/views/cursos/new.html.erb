@@ -1,5 +1,13 @@
-<h1>New Curso</h1>
+<div class="container">
+	<h1 class="pt-3 text-center">
+		Registrar Curso
+		<%= link_to cursos_path, class: "btn btn-ligth float-left mt-2" do %>
+			<%= fa_icon "chevron-left", text: "Atrás" %>
+		<% end %>
+		<hr>
+	</h1>
+	
+</div>
 
 <%= render 'form', curso: @curso %>
 
-<%= link_to 'Back', cursos_path %>

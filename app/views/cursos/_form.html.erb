@@ -1,13 +1,21 @@
 
 <%= simple_form_for(@curso) do |f| %>
   <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs">
-    <%= f.input :nombre %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="container">
+  	<div class="row">
+  		<div class="col-12 col-md-6">
+  			<div class="form-inputs">
+    			<%= f.input :nombre %>
+  			</div>	
+  		</div>
+  		<div class="col-12 col-md-6">
+  			<div class="form-inputs">
+  				<%= f.input :cantidad_alumno, label:"Cupo" %>
+  			</div>
+  		</div>
+  	</div>
+	<div class="form-actions">
+	    <%= f.button :submit, "Guardar", class: "btn btn-dark btn-block btn-lg" %>
+	</div>
   </div>
 <% end %>

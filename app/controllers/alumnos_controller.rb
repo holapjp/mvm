@@ -28,7 +28,7 @@ class AlumnosController < ApplicationController
 
     respond_to do |format|
       if @alumno.save
-        format.html { redirect_to @alumno, notice: 'Alumno was successfully created.' }
+        format.html { redirect_to @alumno, notice: 'Alumno matriculado exitosamente.' }
         format.json { render :show, status: :created, location: @alumno }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class AlumnosController < ApplicationController
   def update
     respond_to do |format|
       if @alumno.update(alumno_params)
-        format.html { redirect_to @alumno, notice: 'Alumno was successfully updated.' }
+        format.html { redirect_to @alumno, notice: 'Alumno actualizado exitosamente.' }
         format.json { render :show, status: :ok, location: @alumno }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class AlumnosController < ApplicationController
   def destroy
     @alumno.destroy
     respond_to do |format|
-      format.html { redirect_to alumnos_url, notice: 'Alumno was successfully destroyed.' }
+      format.html { redirect_to alumnos_url, notice: 'Alumno eliminado exitosamente.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class AlumnosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def alumno_params
-      params.require(:alumno).permit(:tipo_identificacion, :identificacion, :nombre, :apellido, :genero, :email, :fecha_n, :tipo_sangre, :direccion, :barrio, :telefono, :celular)
+      params.require(:alumno).permit(:tipo_identificacion, :identificacion, :nombre, :apellido, :genero, :email, :fecha_n, :tipo_sangre, :direccion, :barrio, :telefono, :celular, :curso_id)
     end
 end

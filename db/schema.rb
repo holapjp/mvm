@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_01_022429) do
+ActiveRecord::Schema.define(version: 2018_08_02_005410) do
 
   create_table "acudientes", force: :cascade do |t|
     t.string "tipo_identificacion"
@@ -52,12 +52,15 @@ ActiveRecord::Schema.define(version: 2018_08_01_022429) do
     t.string "celular"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "curso_id"
+    t.index ["curso_id"], name: "index_alumnos_on_curso_id"
   end
 
   create_table "cursos", force: :cascade do |t|
     t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "cantidad_alumno"
   end
 
   create_table "cursos_docentes", id: false, force: :cascade do |t|

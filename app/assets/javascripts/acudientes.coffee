@@ -6,4 +6,4 @@
 jQuery ->
     $("#acudiente_fecha_n").datepicker({
         language: "es"
-        })    
+    })    
