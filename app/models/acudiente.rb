@@ -1,0 +1,2 @@
+class Acudiente < ApplicationRecord
+end

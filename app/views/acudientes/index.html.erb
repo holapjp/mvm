@@ -1,0 +1,53 @@
+
+<h1 class="jumbotron my-2 py-3 text-center">
+  Acudientes
+</h1>
+<div class="table-responsive-md">
+  <table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Identificacion</th>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Direccion</th>
+      <th>Barrio</th>
+      <th>Telefono</th>
+      <th>Parentesco</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+</div>
+  <tbody>
+    <% @acudientes.each do |acudiente| %>
+      <tr>
+        <td><%= acudiente.identificacion %></td>
+        <td><%= acudiente.nombre + acudiente.apellido %>
+        <td><%= acudiente.email %></td>
+        <td><%= acudiente.direccion %></td>
+        <td><%= acudiente.barrio %></td>
+        <td><%= acudiente.telefono %></td>
+        <td><%= acudiente.parentesco %></td>
+        <td>
+          <%= link_to acudiente, class:"btn btn-primary", title: "Más información sobre el acudiente", remote: true do %>
+            <%= fa_icon "info-circle" %>
+          <% end %>  
+        </td>
+        <td>
+          <%= link_to edit_acudiente_path(acudiente), class:"btn btn-warning text-white", title: "Actualizar información sobre el acudiente" do %>
+            <%= fa_icon "edit" %>
+          <% end %>  
+        </td>
+        <td>
+          <%= link_to acudiente, method: :delete, data: { confirm: 'Estas seguro de borrar esto?' }, class:"btn btn-danger", title: "Eliminar información del acudiente" do %>
+            <%= fa_icon "trash" %>
+          <% end %>
+          </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Acudiente', new_acudiente_path %>

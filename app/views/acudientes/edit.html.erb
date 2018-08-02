@@ -1,0 +1,18 @@
+<div class="container">
+    <h1 class="pt-3 text-center">
+        Actualizar Acudiente
+        <%= link_to acudientes_path, class: "btn btn-ligth float-left mt-2" do %>
+            <%= fa_icon "chevron-left", text: "Atrás" %>
+        <% end %>
+    </h1>
+    <hr>
+</div>
+
+<%= render 'form', acudiente: @acudiente %>
+
+<div class="container">
+    <%= link_to acudientes_path, class:"btn btn-ligth mb-3 mt-3" do %>    
+        <%= fa_icon "chevron-left", text: "Atrás"%>
+    <% end %>
+</div>
+

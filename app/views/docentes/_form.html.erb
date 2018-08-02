@@ -1,0 +1,24 @@
+
+<%= simple_form_for(@docente) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :tipo_identificacion %>
+    <%= f.input :identificacion %>
+    <%= f.input :nombre %>
+    <%= f.input :apellido %>
+    <%= f.input :genero %>
+    <%= f.input :email %>
+    <%= f.input :fecha_n %>
+    <%= f.input :tipo_sangre %>
+    <%= f.input :direccion %>
+    <%= f.input :barrio %>
+    <%= f.input :telefono %>
+    <%= f.input :celular %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
