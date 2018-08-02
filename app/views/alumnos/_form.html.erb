@@ -4,55 +4,55 @@
 <div class="container">
   <div class="form-inputs">
     <div class="row">
-      <div class="col">
+      <div class="col-12 col-md-6">
         <%= f.input :tipo_identificacion, collection: ["T.I. - Tarjeta de Identidad","C.C. - Cédula de Ciudadania","C.I. - Cédula de Identidad", "T.P. - Tarjeta Pasaporte", "R.C. - Registro Civil","C.E. - Cédula Extranjería" ], include_blank: false %>
       </div>
-      <div class="col">
+      <div class="col-12 col-md-6">
         <%= f.input :identificacion %>
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col-12 col-md-6">
         <%= f.input :nombre %>
       </div>
-      <div class="col">
+      <div class="col-12 col-md-6">
         <%= f.input :apellido %>
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col-12 col-md-6">
         <%= f.input :fecha_n, as:  :date, label: "Fecha de Nacimiento" %>
       </div>
-      <div class="col">
+      <div class="col-12 col-md-6">
         <%= f.input :tipo_sangre, label: "Tipo de Sangre", collection: ["O-","O+","A-","A+","B-","B+","AB-","AB+"], include_blank: false %>
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col-12 col-md-6">
         <%= f.input :barrio %>
       </div>
-      <div class="col">
+      <div class="col-12 col-md-6">
         <%= f.input :direccion %>
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col-12 col-md-6">
         <%= f.input :email %>
       </div>
-      <div class="col">
+      <div class="col-12 col-md-6">
         <%= f.input :telefono %>
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col-12 col-md-6">
         <%= f.input :celular %>
       </div>
-      <div class="col">
+      <div class="col-12 col-md-6">
         <%= f.input :genero, as: :radio_buttons, collection: ["Masculino","Femenino"] %>
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col-12 col-md-6">
         <%= f.association :curso, include_blank: "Seleccion un curso" %>
       </div>
     </div>

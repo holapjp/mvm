@@ -1,6 +1,6 @@
 <h1 class="jumbotron my-2 py-3 text-center">
   Alumnos
-    <%= link_to new_alumno_path, class: "btn btn-success" do %>
+    <%= link_to new_alumno_path, class: "btn btn-success", remote: true do %>
       <h3 class="p-0 m-0">  
         <%= fa_icon "plus" %>
       </h3>
@@ -28,11 +28,12 @@
     <thead>
       <tr>
         <th>Identificacion</th>
-        <th colspan="2">Nombre</th>
+        <th>Nombre</th>
         <th>Email</th>
         <th>Direccion</th>
         <th>Barrio</th>
         <th>Telefono</th>
+        <th>Curso</th>
         <th colspan="3">Opciones</th>
       </tr>
     </thead>
@@ -40,15 +41,20 @@
       <% @alumnos.each do |alumno| %>
         <tr>
           <td><%= alumno.identificacion %></td>
-          <td><%= alumno.nombre + alumno.apellido %></td>
-          <td></td>
+          <td><%= alumno.nombre + " " + alumno.apellido %></td>
           <td><%= alumno.email %></td>
           <td><%= alumno.direccion %></td>
           <td><%= alumno.barrio %></td>
           <td><%= alumno.telefono %></td>
+          <td><%= alumno.curso.try(:nombre)%></td>
           <td>
             <%= link_to alumno, class:"btn btn-primary", title: "Más información sobre el alumno" do %>
               <%= fa_icon "info-circle" %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to new_acudiente_path(alumno), class:"btn btn-secondary text-white", title: "Registrar Acudiente", remote: true do %>
+              <%= fa_icon "address-card" %>
             <% end %>
           </td>
           <td>
