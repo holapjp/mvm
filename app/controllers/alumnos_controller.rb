@@ -4,7 +4,7 @@ class AlumnosController < ApplicationController
   # GET /alumnos
   # GET /alumnos.json
   def index
-    @alumnos = Alumno.all
+    @alumnos = Alumno.search(params[:term]).page(params[:page])
   end
 
   # GET /alumnos/1

@@ -1,49 +1,71 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Alumnos</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Tipo identificacion</th>
-      <th>Identificacion</th>
-      <th>Nombre</th>
-      <th>Apellido</th>
-      <th>Genero</th>
-      <th>Email</th>
-      <th>Fecha n</th>
-      <th>Tipo sangre</th>
-      <th>Direccion</th>
-      <th>Barrio</th>
-      <th>Telefono</th>
-      <th>Celular</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @alumnos.each do |alumno| %>
-      <tr>
-        <td><%= alumno.tipo_identificacion %></td>
-        <td><%= alumno.identificacion %></td>
-        <td><%= alumno.nombre %></td>
-        <td><%= alumno.apellido %></td>
-        <td><%= alumno.genero %></td>
-        <td><%= alumno.email %></td>
-        <td><%= alumno.fecha_n %></td>
-        <td><%= alumno.tipo_sangre %></td>
-        <td><%= alumno.direccion %></td>
-        <td><%= alumno.barrio %></td>
-        <td><%= alumno.telefono %></td>
-        <td><%= alumno.celular %></td>
-        <td><%= link_to 'Show', alumno %></td>
-        <td><%= link_to 'Edit', edit_alumno_path(alumno) %></td>
-        <td><%= link_to 'Destroy', alumno, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<h1 class="jumbotron my-2 py-3 text-center">
+  Alumnos
+    <%= link_to new_alumno_path, class: "btn btn-success" do %>
+      <h3 class="p-0 m-0">  
+        <%= fa_icon "plus" %>
+      </h3>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Alumno', new_alumno_path %>
+</h1>
+<div class="container">
+  <%= form_tag(alumnos_path, method: :get) do %>
+    <div class="form-row">
+      <div class="col-8">
+        <%= text_field_tag :term, params[:term], class:"form-control my-2", placeholder:"Buscar por: Documento,Nombre,Apellido o Curso" %>
+      </div>
+      <div class="col-1">
+        <button type="submit" class="btn btn-success my-2">
+          <%= fa_icon "search" %>
+        </button>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="table-responsive-md">
+  <table class="table table-hover">
+    <caption>
+      <%= page_entries_info @alumnos, entry_name: "Alumnos" %>
+    </caption>
+    <thead>
+      <tr>
+        <th>Identificacion</th>
+        <th colspan="2">Nombre</th>
+        <th>Email</th>
+        <th>Direccion</th>
+        <th>Barrio</th>
+        <th>Telefono</th>
+        <th colspan="3">Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @alumnos.each do |alumno| %>
+        <tr>
+          <td><%= alumno.identificacion %></td>
+          <td><%= alumno.nombre + alumno.apellido %></td>
+          <td></td>
+          <td><%= alumno.email %></td>
+          <td><%= alumno.direccion %></td>
+          <td><%= alumno.barrio %></td>
+          <td><%= alumno.telefono %></td>
+          <td>
+            <%= link_to alumno, class:"btn btn-primary", title: "Más información sobre el alumno" do %>
+              <%= fa_icon "info-circle" %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to edit_alumno_path(alumno), class:"btn btn-warning text-white", title: "Actualizar información sobre el alumno" do %>
+              <%= fa_icon "edit" %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to  alumno, method: :delete, data: { confirm: 'Estas seguro de borrar esto?' }, class: "btn btn-danger" do %>
+              <%= fa_icon "trash" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="container nav justify-content-center">
+  <%= paginate @alumnos %>
+</div>
