@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_02_005410) do
+ActiveRecord::Schema.define(version: 2018_08_03_032603) do
 
   create_table "acudientes", force: :cascade do |t|
     t.string "tipo_identificacion"

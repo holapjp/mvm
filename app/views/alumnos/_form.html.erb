@@ -57,9 +57,21 @@
       </div>
     </div>
   </div>
+  <div class="card">
+    <div class="card-header bg-warning text-white" >
+      <h4 class="p-0 m-0">
+        <%= fa_icon "address-card", text:"Información Acudiente" %>
+      </h4>
+    </div>
+    <div class="card-body" id="card-body">
+      <%= f.simple_fields_for :acudientes do |form| %>
+        <%= render "acudientes_fields", f: form %>
+      <% end %>
+    </div>
+  </div>
 
 </div>
-<div class="form-actions">
+<div class="form-actions mt-2">
   <button type="submit" class="btn btn-primary btn-lg btn-block">
     <%= fa_icon "save", text:"Guardar" %>
   </button>

@@ -1,53 +1,67 @@
-
 <h1 class="jumbotron my-2 py-3 text-center">
   Acudientes
 </h1>
+<div class="container">
+  <%= form_tag(acudientes_path, method: :get) do %>
+    <div class="form-row">
+      <div class="col-8">
+        <%= text_field_tag :term, params[:term], class:"form-control my-2", placeholder: "Buscar por Identificacion o Nombre" %>
+      </div>
+      <div class="col">
+        <button class="btn btn-success my-2" type="submit">
+          <%= fa_icon "search" %>
+        </button>
+      </div>
+    </div>
+  <% end %>
+</div>
 <div class="table-responsive-md">
   <table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Identificacion</th>
-      <th>Nombre</th>
-      <th>Email</th>
-      <th>Direccion</th>
-      <th>Barrio</th>
-      <th>Telefono</th>
-      <th>Parentesco</th>
-      <th colspan="3">Opciones</th>
-    </tr>
-  </thead>
-
-</div>
-  <tbody>
-    <% @acudientes.each do |acudiente| %>
+    <caption>
+      <%= page_entries_info @acudientes, entry_name: "Acudientes" %>
+    </caption>
+    <thead>
       <tr>
-        <td><%= acudiente.identificacion %></td>
-        <td><%= acudiente.nombre + acudiente.apellido %>
-        <td><%= acudiente.email %></td>
-        <td><%= acudiente.direccion %></td>
-        <td><%= acudiente.barrio %></td>
-        <td><%= acudiente.telefono %></td>
-        <td><%= acudiente.parentesco %></td>
-        <td>
-          <%= link_to acudiente, class:"btn btn-primary", title: "Más información sobre el acudiente", remote: true do %>
-            <%= fa_icon "info-circle" %>
-          <% end %>  
-        </td>
-        <td>
-          <%= link_to edit_acudiente_path(acudiente), class:"btn btn-warning text-white", title: "Actualizar información sobre el acudiente" do %>
-            <%= fa_icon "edit" %>
-          <% end %>  
-        </td>
-        <td>
-          <%= link_to acudiente, method: :delete, data: { confirm: 'Estas seguro de borrar esto?' }, class:"btn btn-danger", title: "Eliminar información del acudiente" do %>
-            <%= fa_icon "trash" %>
-          <% end %>
-          </td>
+        <th>Identificacion</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Direccion</th>
+        <th>Barrio</th>
+        <th>Telefono</th>
+        <th>Parentesco</th>
+        <th colspan="3">Opciones</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Acudiente', new_acudiente_path %>
+    </thead>
+    <tbody>
+      <% @acudientes.each do |acudiente| %>
+        <tr>
+          <td><%= acudiente.identificacion %></td>
+          <td><%= acudiente.nombre %> <%= acudiente.apellido %>
+          <td><%= acudiente.email %></td>
+          <td><%= acudiente.direccion %></td>
+          <td><%= acudiente.barrio %></td>
+          <td><%= acudiente.telefono %></td>
+          <td><%= acudiente.parentesco %></td>
+          <td>
+            <%= link_to acudiente, class:"btn btn-primary", title: "Más información sobre el acudiente", remote: true do %>
+              <%= fa_icon "info-circle" %>
+            <% end %>  
+          </td>
+          <td>
+            <%= link_to edit_acudiente_path(acudiente), class:"btn btn-warning text-white", title: "Actualizar información sobre el acudiente" do %>
+              <%= fa_icon "edit" %>
+            <% end %>  
+          </td>
+          <td>
+            <%= link_to acudiente, method: :delete, data: { confirm: 'Estas seguro de borrar esto?' }, class:"btn btn-danger"  do %>
+              <%= fa_icon "trash" %>
+            <% end %>
+            </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="cotainer nav justify-content-center">
+  <%= paginate @acudientes %>
+</div>

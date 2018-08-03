@@ -1,24 +1,78 @@
-
 <%= simple_form_for(@docente) do |f| %>
   <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs">
-    <%= f.input :tipo_identificacion %>
-    <%= f.input :identificacion %>
-    <%= f.input :nombre %>
-    <%= f.input :apellido %>
-    <%= f.input :genero %>
-    <%= f.input :email %>
-    <%= f.input :fecha_n %>
-    <%= f.input :tipo_sangre %>
-    <%= f.input :direccion %>
-    <%= f.input :barrio %>
-    <%= f.input :telefono %>
-    <%= f.input :celular %>
+  <div class="container">
+    <div class="form-inputs">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <%= f.input :tipo_identificacion, collection: ["T.I. - Tarjeta de Identidad", "C.C. - Cédula de Ciudadania","C.I. - Cédula de Identidad", "T.P. - Tarjeta Pasaporte", "R.C. - Registro Civil","C.E. - Cédula Extranjería"], include_blank: false   %>
+        </div>
+        <div class="col-12 col-md-6">
+          <%= f.input :identificacion %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6">    
+          <%= f.input :nombre %>
+        </div>
+        <div class="col-12 col-md-6">
+          <%= f.input :apellido %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <%= f.input :fecha_n, as: :date, label: "Fecha de Nacimiento", start_year: 1970 %>
+        </div>
+        <div class="col-12 col-md-6">
+          <%= f.input :tipo_sangre, label: "Tipo de Sangre", collection: ["O-","O+","A-","A+","B-","B+","AB-","AB+"], include_blank: false %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <%= f.input :barrio %>
+        </div>
+        <div class="col-12 col-md-6">
+          <%= f.input :direccion %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <%= f.input :email %>
+        </div>
+        <div class="col-12 col-md-6">
+          <%= f.input :telefono %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <%= f.input :celular %>
+        </div>
+        <div class="col-12 col-md-6">
+          <%= f.input :genero, collection: ['Masculino',"Femenino"] %>  
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header bg-secondary text-white">
+        <h4 class="p-0 m-0">
+          <%= fa_icon "book", text: "Asignar Materia"%>
+        </h4>
+      </div>
+      <div class="card-body">
+        <div id="materias">
+          <%= f.simple_fields_for :materias do |form| %>
+            <%= render "docentes/materia_fields", f: form %>
+          <% end %>
+          <div class="links">
+            <%= link_to_add_association "Agregar Materia",f, :materias, class:"btn btn-secondary" %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="form-actions mt-2">
+    <button type="submit" class="btn btn-primary btn-lg btn-block">
+      <%= fa_icon "save", text: "Guardar" %>
+    </button>
   </div>
 <% end %>

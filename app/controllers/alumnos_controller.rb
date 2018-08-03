@@ -15,6 +15,8 @@ class AlumnosController < ApplicationController
   # GET /alumnos/new
   def new
     @alumno = Alumno.new
+    @alumno.curso_id = Curso.first.id
+    @acudiente = @alumno.acudientes.new
   end
 
   # GET /alumnos/1/edit
@@ -25,6 +27,7 @@ class AlumnosController < ApplicationController
   # POST /alumnos.json
   def create
     @alumno = Alumno.new(alumno_params)
+    @alumno.acudientes.new(params[:identificacion])
 
     respond_to do |format|
       if @alumno.save
@@ -69,6 +72,8 @@ class AlumnosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def alumno_params
-      params.require(:alumno).permit(:tipo_identificacion, :identificacion, :nombre, :apellido, :genero, :email, :fecha_n, :tipo_sangre, :direccion, :barrio, :telefono, :celular, :curso_id)
+      params.require(:alumno).permit(:tipo_identificacion, :identificacion, :nombre, :apellido, :genero, :email, :fecha_n, :tipo_sangre, :direccion, :barrio, :telefono, :celular, :curso_id,
+        acudientes_attributes: [:id,:tipo_identificacion, :identificacion, :nombre, :apellido, :fecha_n, :tipo_sangre,
+                                :barrio, :direccion, :email, :telefono, :celular, :genero , :parentesco, :_destroy])
     end
 end

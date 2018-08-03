@@ -1,27 +1,60 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Materias</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @materias.each do |materia| %>
-      <tr>
-        <td><%= materia.nombre %></td>
-        <td><%= link_to 'Show', materia %></td>
-        <td><%= link_to 'Edit', edit_materia_path(materia) %></td>
-        <td><%= link_to 'Destroy', materia, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<h1 class="jumbotron my-2 py-2 text-center">
+  Materias
+    <%= link_to new_materia_path, class: "btn btn-success " do %>
+      <h3 class="p-0 m-0">
+        <%= fa_icon "plus" %>
+      </h3>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Materia', new_materia_path %>
+</h1>
+<div class="container">
+  <%= form_tag(materias_path,method: :get) do %>
+    <div class="form-row">
+      <div class="col-8">
+        <%= text_field_tag :term, params[:term], class:"form-control my-2", placeholder: "Buscar por: Nombre o por Cupo" %>
+      </div>
+      <div class="col-1">
+        <button type="submit" class="btn btn-success my-2">
+          <%= fa_icon "search" %>
+        </button>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="table-responsive-md">
+  <table class="table table-hover">
+    <caption>
+      <%= page_entries_info @materias, entry_name: "Materias" %>
+    </caption>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th colspan="3">Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @materias.each do |materia| %>
+        <tr>
+          <td><%= materia.nombre %></td>
+          <td>
+            <%= link_to  materia, class:"btn btn-primary", title:"Más información sobre el curso" do %>
+              <%= fa_icon "info-circle" %>
+            <% end %>
+            </td>
+          <td>
+            <%= link_to edit_materia_path(materia), class:"btn btn-warning text-white", title: "Actualizar información sobre el acudiente" do%>
+              <%= fa_icon "edit" %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to  materia, method: :delete, data: { confirm: 'Estas seguro de borrar esto?' }, class:"btn btn-danger" do %>
+              <%= fa_icon "trash" %>
+            <% end %>    
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="container nav justify-content-center">
+  <%= paginate @materias %>
+</div>

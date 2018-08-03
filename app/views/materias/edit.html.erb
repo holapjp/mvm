@@ -1,6 +1,11 @@
-<h1>Editing Materia</h1>
+<div class="container">
+	<h1 class="pt-3 text-center">
+		Actualizar Materia
+		<%= link_to materias_path, class: "btn btn-ligth float-left mt-2" do %>
+			<%= fa_icon "chevron-left", text: "Atrás" %>
+		<% end %>
+	</h1>
+	<hr>
+</div>
 
 <%= render 'form', materia: @materia %>
-
-<%= link_to 'Show', @materia %> |
-<%= link_to 'Back', materias_path %>

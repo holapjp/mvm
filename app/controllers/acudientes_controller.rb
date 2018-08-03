@@ -4,7 +4,7 @@ class AcudientesController < ApplicationController
   # GET /acudientes
   # GET /acudientes.json
   def index
-    @acudientes = Acudiente.all
+    @acudientes = Acudiente.search(params[:term]).page(params[:page])
   end
 
   # GET /acudientes/1
@@ -28,7 +28,7 @@ class AcudientesController < ApplicationController
 
     respond_to do |format|
       if @acudiente.save
-        format.html { redirect_to @acudiente, notice: 'Acudiente was successfully created.' }
+        format.html { redirect_to @acudiente, notice: 'Acudiente registrado exitosamente.' }
         format.json { render :show, status: :created, location: @acudiente }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class AcudientesController < ApplicationController
   def update
     respond_to do |format|
       if @acudiente.update(acudiente_params)
-        format.html { redirect_to @acudiente, notice: 'Acudiente was successfully updated.' }
+        format.html { redirect_to @acudiente, notice: 'Acudiente actualizado exitosamente.' }
         format.json { render :show, status: :ok, location: @acudiente }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class AcudientesController < ApplicationController
   def destroy
     @acudiente.destroy
     respond_to do |format|
-      format.html { redirect_to acudientes_url, notice: 'Acudiente was successfully destroyed.' }
+      format.html { redirect_to acudientes_url, notice: 'Acudiente eliminado exitosamente.' }
       format.json { head :no_content }
     end
   end

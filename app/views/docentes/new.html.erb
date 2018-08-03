@@ -1,5 +1,17 @@
-<h1>New Docente</h1>
+<div class="container">
+	<h1 class="pt-3 text-center">
+		Registrar Docente
+		<%= link_to docentes_path, class: "btn btn-ligth float-left mt-2" do %>
+			<%= fa_icon "chevron-left", text:"Atrás" %>
+		<% end %>
+	</h1>
+	<hr>
+</div>
 
 <%= render 'form', docente: @docente %>
 
-<%= link_to 'Back', docentes_path %>
+<div class="container">
+	<%= link_to docentes_path, class: "btn btn-ligth mb-3 mt-3" do %>	
+		<%= fa_icon "chevron-left", text: "Atrás" %>
+	<% end %>
+</div>

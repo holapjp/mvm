@@ -1,49 +1,71 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Docentes</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Tipo identificacion</th>
-      <th>Identificacion</th>
-      <th>Nombre</th>
-      <th>Apellido</th>
-      <th>Genero</th>
-      <th>Email</th>
-      <th>Fecha n</th>
-      <th>Tipo sangre</th>
-      <th>Direccion</th>
-      <th>Barrio</th>
-      <th>Telefono</th>
-      <th>Celular</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @docentes.each do |docente| %>
+<h1 class="jumbotron my-2 py-2 text-center">
+  Docentes
+  <%= link_to new_docente_path, class: "btn btn-success" do %>
+    <h3 class="p-0 m-0">
+      <%= fa_icon "plus" %>
+    </h3>
+  <% end %>
+</h1>
+<div class="container">
+  <%= form_tag(docentes_path, method: :get) do %>
+    <div class="form-row">
+      <div class="col-8">
+        <%= text_field_tag :term, params[:term], class:"form-control my-2", placeholder: "Buscar por: Identificacion, Nombre o Materia" %>
+      </div>
+      <div class="col">
+        <button class="btn btn-success my-2" type="submit">
+          <%= fa_icon "search" %>
+        </button>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="table-responsive-md">
+  <table class="table table-hover">
+    <caption>
+      <%= page_entries_info @docentes, entry_name: "Docentes" %>
+    </caption>
+    <thead>
       <tr>
-        <td><%= docente.tipo_identificacion %></td>
-        <td><%= docente.identificacion %></td>
-        <td><%= docente.nombre %></td>
-        <td><%= docente.apellido %></td>
-        <td><%= docente.genero %></td>
-        <td><%= docente.email %></td>
-        <td><%= docente.fecha_n %></td>
-        <td><%= docente.tipo_sangre %></td>
-        <td><%= docente.direccion %></td>
-        <td><%= docente.barrio %></td>
-        <td><%= docente.telefono %></td>
-        <td><%= docente.celular %></td>
-        <td><%= link_to 'Show', docente %></td>
-        <td><%= link_to 'Edit', edit_docente_path(docente) %></td>
-        <td><%= link_to 'Destroy', docente, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Identificacion</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Direccion</th>
+        <th>Barrio</th>
+        <th>Telefono</th>
+        <th>Celular</th>
+        <th colspan="3">Opciones</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
-
-<%= link_to 'New Docente', new_docente_path %>
+    <tbody>
+      <% @docentes.each do |docente| %>
+        <tr>
+          <td><%= docente.identificacion %></td>
+          <td><%= docente.nombre %> <%= docente.apellido %></td>
+          <td><%= docente.email %></td>
+          <td><%= docente.direccion %></td>
+          <td><%= docente.barrio %></td>
+          <td><%= docente.telefono %></td>
+          <td><%= docente.celular %></td>
+          <td>
+            <%= link_to docente, class:"btn btn-primary", title: "Más información sobre el docente" do %>
+              <%= fa_icon "info-circle" %>
+            <% end %>
+          </td>
+          <td><%= link_to  edit_docente_path(docente), class:"btn btn-warning text-white", title: "Actualizar información sobre el docente" do %>
+            <%= fa_icon "edit" %>
+            <% end %>
+          </td>
+          <td><%= link_to docente, method: :delete, data: { confirm: 'Estas seguro de borrar esto?' }, class: "btn btn-danger" do %>
+                <%= fa_icon "trash" %>
+              <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>  
+</div>
+<div class="container nav justify-content-center">
+  <%= paginate @docentes %>
+</div>

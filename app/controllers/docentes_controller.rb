@@ -4,7 +4,7 @@ class DocentesController < ApplicationController
   # GET /docentes
   # GET /docentes.json
   def index
-    @docentes = Docente.all
+    @docentes = Docente.search(params[:term]).page(params[:page])
   end
 
   # GET /docentes/1
@@ -15,6 +15,7 @@ class DocentesController < ApplicationController
   # GET /docentes/new
   def new
     @docente = Docente.new
+    @materia = @docente.materias.new
   end
 
   # GET /docentes/1/edit
@@ -69,6 +70,6 @@ class DocentesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def docente_params
-      params.require(:docente).permit(:tipo_identificacion, :identificacion, :nombre, :apellido, :genero, :email, :fecha_n, :tipo_sangre, :direccion, :barrio, :telefono, :celular)
+      params.require(:docente).permit(:tipo_identificacion, :identificacion, :nombre, :apellido, :genero, :email, :fecha_n, :tipo_sangre, :direccion, :barrio, :telefono, :celular, :materia)
     end
 end

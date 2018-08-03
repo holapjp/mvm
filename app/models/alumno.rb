@@ -1,6 +1,8 @@
 class Alumno < ApplicationRecord
 	belongs_to :curso
 	has_and_belongs_to_many :acudientes
+	accepts_nested_attributes_for :acudientes
+
 
 	def name
 		self.nombre

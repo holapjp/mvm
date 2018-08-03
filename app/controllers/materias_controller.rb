@@ -4,7 +4,7 @@ class MateriasController < ApplicationController
   # GET /materias
   # GET /materias.json
   def index
-    @materias = Materia.all
+    @materias = Materia.search(params[:term]).page(params[:page])
   end
 
   # GET /materias/1
